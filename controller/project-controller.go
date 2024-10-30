@@ -8,7 +8,7 @@ import (
 
 type ProjectController interface {
 	FindAll() []entity.Project
-	Save(ctx *gin.Context) entity.Project
+	Save(ctx *gin.Context) error
 }
 
 type controller struct {
@@ -24,9 +24,12 @@ func New(service service.ProjectService) ProjectController {
 func (c *controller) FindAll() []entity.Project {
 	return c.service.FindAll()
 }
-func (c *controller) Save(ctx *gin.Context) entity.Project {
+func (c *controller) Save(ctx *gin.Context) error {
 	var project entity.Project
-	ctx.BindJSON(&project)
+	err := ctx.ShouldBindJSON(&project)
+	if err != nil {
+		return err
+	}
 	c.service.Save(project)
-	return project
+	return nil
 }
