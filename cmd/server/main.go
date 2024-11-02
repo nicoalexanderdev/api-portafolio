@@ -37,6 +37,7 @@ func main() {
 
 	// Setup routes
 	routes.SetupProjectRoutes(router, mongoDatabase)
+	routes.SetupCategoryRoutes(router, mongoDatabase)
 
 	// Start server
 	server := &http.Server{

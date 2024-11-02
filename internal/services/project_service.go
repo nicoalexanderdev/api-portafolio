@@ -11,7 +11,7 @@ import (
 
 var (
 	ErrProjectNotFound = errors.New("project not found")
-	ErrInvalidID       = errors.New("invalid project ID")
+	ErrInvalidID       = errors.New("invalid ID")
 )
 
 type ProjectService interface {

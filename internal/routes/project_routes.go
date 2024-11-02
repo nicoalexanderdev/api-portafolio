@@ -21,12 +21,4 @@ func SetupProjectRoutes(router *gin.Engine, db *mongo.Database) {
 		projectRoutes.PUT("/:id", projectController.UpdateProject)
 		projectRoutes.DELETE("/:id", projectController.DeleteProject)
 	}
-
-	// Protected routes
-	// protected := r.Group("/api/v1")
-	// protected.Use(middleware.AuthMiddleware())
-	// {
-	// 	protected.GET("/profile", controllers.GetProfile)
-	// 	protected.PUT("/profile", controllers.UpdateProfile)
-	// }
 }
