@@ -10,11 +10,6 @@ import (
 	"github.com/nicoalexanderdev/api-portafolio/internal/routes"
 )
 
-// var (
-// 	projectService    service.ProjectService       = service.New()
-// 	projectController controller.ProjectController = controller.New(projectService)
-// )
-
 func main() {
 	// Load configuration
 	cfg := config.GetConfig()
@@ -38,6 +33,7 @@ func main() {
 	// Setup routes
 	routes.SetupProjectRoutes(router, mongoDatabase)
 	routes.SetupCategoryRoutes(router, mongoDatabase)
+	routes.SetupBlogRoutes(router, mongoDatabase)
 
 	// Start server
 	server := &http.Server{

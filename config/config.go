@@ -44,7 +44,7 @@ func GetConfig() *Configuration {
 			Database: DatabaseConfig{
 				URI:     getEnv("MONGODB_URI", ""),
 				Name:    getEnv("MONGODB_DATABASE", "api_go"),
-				Timeout: time.Duration(getEnvAsInt("MONGODB_TIMEOUT", 10)) * time.Second,
+				Timeout: time.Duration(getEnvAsInt("MONGODB_TIMEOUT", 30)) * time.Second,
 			},
 		}
 	})
