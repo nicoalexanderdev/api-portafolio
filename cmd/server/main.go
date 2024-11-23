@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/nicoalexanderdev/api-portafolio/config"
 	"github.com/nicoalexanderdev/api-portafolio/internal/routes"
@@ -29,6 +30,13 @@ func main() {
 
 	// Initialize Gin router
 	router := gin.Default()
+
+	// Configuración simple de CORS
+	router.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"http://localhost:4200", "https://portafolio-evjm.onrender.com"},
+		AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders: []string{"Origin", "Content-Type", "Authorization"},
+	}))
 
 	// Setup routes
 	routes.SetupProjectRoutes(router, mongoDatabase)
