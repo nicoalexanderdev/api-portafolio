@@ -38,6 +38,8 @@ func main() {
 		AllowHeaders: []string{"Origin", "Content-Type", "Authorization"},
 	}))
 
+	router.Static("/api/v1/img", "./static/img")
+
 	// Setup routes
 	routes.SetupProjectRoutes(router, mongoDatabase)
 	routes.SetupCategoryRoutes(router, mongoDatabase)

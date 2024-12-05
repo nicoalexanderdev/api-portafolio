@@ -18,6 +18,7 @@ type BlogService interface {
 	CreateBlog(ctx context.Context, blog *models.Blog) error
 	GetAllBlogs(ctx context.Context) ([]models.BlogResponse, error)
 	GetBlogByID(ctx context.Context, id string) (*models.BlogResponse, error)
+	GetBlogsByCategory(ctx context.Context, categoryId string) ([]models.BlogResponse, error)
 	UpdateBlog(ctx context.Context, id string, blog *models.Blog) error
 	DeleteBlog(ctx context.Context, id string) error
 }
@@ -51,6 +52,8 @@ func (s *blogService) GetAllBlogs(ctx context.Context) ([]models.BlogResponse, e
 			Duration:     blog.Duration,
 			Content:      blog.Content,
 			ExamplePaths: blog.ExamplePaths,
+			Images:       blog.Images,
+			CategoryId:   blog.CategoryId,
 			CreatedAt:    blog.CreatedAt,
 			UpdatedAt:    blog.UpdatedAt,
 		}
@@ -81,9 +84,49 @@ func (s *blogService) GetBlogByID(ctx context.Context, id string) (*models.BlogR
 		Duration:     blog.Duration,
 		Content:      blog.Content,
 		ExamplePaths: blog.ExamplePaths,
+		Images:       blog.Images,
+		CategoryId:   blog.CategoryId,
 		CreatedAt:    blog.CreatedAt,
 		UpdatedAt:    blog.UpdatedAt,
 	}, nil
+}
+
+func (s *blogService) GetBlogsByCategory(ctx context.Context, categoryId string) ([]models.BlogResponse, error) {
+	// Convertir categoryId de string a ObjectID
+	objectID, err := primitive.ObjectIDFromHex(categoryId)
+	if err != nil {
+		return nil, ErrInvalidID
+	}
+
+	// Llamar al repositorio para obtener los blogs por categoría
+	blogs, err := s.repo.FindByCategory(ctx, objectID)
+	if err != nil {
+		return nil, err
+	}
+
+	// Si no hay blogs encontrados, retornar un slice vacío
+	if len(blogs) == 0 {
+		return []models.BlogResponse{}, nil
+	}
+
+	// Mapear los blogs obtenidos a BlogResponse
+	response := make([]models.BlogResponse, len(blogs))
+	for i, blog := range blogs {
+		response[i] = models.BlogResponse{
+			ID:           blog.ID,
+			Title:        blog.Title,
+			Subtitle:     blog.Subtitle,
+			Duration:     blog.Duration,
+			Content:      blog.Content,
+			ExamplePaths: blog.ExamplePaths,
+			Images:       blog.Images,
+			CategoryId:   blog.CategoryId,
+			CreatedAt:    blog.CreatedAt,
+			UpdatedAt:    blog.UpdatedAt,
+		}
+	}
+
+	return response, nil
 }
 
 func (s *blogService) UpdateBlog(ctx context.Context, id string, blog *models.Blog) error {

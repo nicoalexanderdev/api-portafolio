@@ -18,6 +18,7 @@ func SetupBlogRoutes(router *gin.Engine, db *mongo.Database) {
 		blogRoutes.POST("", blogController.CreateBlog)
 		blogRoutes.GET("", blogController.GetAllBlogs)
 		blogRoutes.GET("/:id", blogController.GetBlogByID)
+		blogRoutes.GET("/category/:categoryId", blogController.GetBlogsByCategory)
 		blogRoutes.PUT("/:id", blogController.UpdateBlog)
 		blogRoutes.DELETE("/:id", blogController.DeleteBlog)
 	}

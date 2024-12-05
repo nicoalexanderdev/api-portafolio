@@ -14,6 +14,8 @@ type Blog struct {
 	Duration     int                `json:"duration" binding:"required"`
 	Content      json.RawMessage    `json:"content" binding:"required"`
 	ExamplePaths []string           `json:"example_paths" binding:"required"`
+	Images       []string           `json:"images"`
+	CategoryId   primitive.ObjectID `json:"categoryId" bson:"categoryId" binding:"required"`
 	CreatedAt    time.Time          `json:"created_at" bson:"created_at"`
 	UpdatedAt    time.Time          `json:"updated_at" bson:"updated_at"`
 }
@@ -25,6 +27,8 @@ type BlogResponse struct {
 	Duration     int                `json:"duration"`
 	Content      json.RawMessage    `json:"content"`
 	ExamplePaths []string           `json:"example_paths"`
+	Images       []string           `json:"images"`
+	CategoryId   primitive.ObjectID `json:"categoryId"`
 	CreatedAt    time.Time          `json:"created_at"`
 	UpdatedAt    time.Time          `json:"updated_at"`
 }

@@ -62,6 +62,24 @@ func (c *BlogController) GetBlogByID(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, blog)
 }
 
+func (c *BlogController) GetBlogsByCategory(ctx *gin.Context) {
+	categoryId := ctx.Param("categoryId") // Obtener el ID de la categoría desde los parámetros de la URL
+
+	blogs, err := c.service.GetBlogsByCategory(ctx.Request.Context(), categoryId)
+	if err != nil {
+		switch err {
+		case services.ErrInvalidID:
+			ctx.JSON(http.StatusBadRequest, gin.H{"Error": "Invalid Category ID"})
+		default:
+			ctx.JSON(http.StatusInternalServerError, gin.H{"Error": err.Error()})
+		}
+		return
+	}
+
+	// Retornar los blogs en un formato JSON
+	ctx.JSON(http.StatusOK, blogs)
+}
+
 func (c *BlogController) UpdateBlog(ctx *gin.Context) {
 	id := ctx.Param("id")
 	var blog models.Blog

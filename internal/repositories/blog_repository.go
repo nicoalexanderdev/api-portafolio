@@ -15,6 +15,7 @@ type BlogRepository interface {
 	Create(ctx context.Context, blog *models.Blog) error
 	FindAll(ctx context.Context) ([]models.Blog, error)
 	FindByID(ctx context.Context, id primitive.ObjectID) (*models.Blog, error)
+	FindByCategory(ctx context.Context, categoryId primitive.ObjectID) ([]models.Blog, error)
 	Update(ctx context.Context, id primitive.ObjectID, blog *models.Blog) error
 	Delete(ctx context.Context, id primitive.ObjectID) error
 }
@@ -78,6 +79,27 @@ func (r *blogRepository) FindByID(ctx context.Context, id primitive.ObjectID) (*
 	}
 
 	return &blog, nil
+}
+
+// find by category
+func (r *blogRepository) FindByCategory(ctx context.Context, categoryId primitive.ObjectID) ([]models.Blog, error) {
+	// Configurar opciones de consulta (por ejemplo, ordenar por fecha de creación)
+	opts := options.Find().SetSort(bson.D{{Key: "created_at", Value: -1}})
+
+	// Realizar la búsqueda
+	cursor, err := r.collection.Find(ctx, bson.M{"categoryId": categoryId}, opts)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(ctx)
+
+	// Decodificar los resultados en un slice de modelos
+	var blogs []models.Blog
+	if err = cursor.All(ctx, &blogs); err != nil {
+		return nil, err
+	}
+
+	return blogs, nil
 }
 
 // update
