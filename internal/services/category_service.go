@@ -50,6 +50,7 @@ func (s *categoryService) GetAllCategories(ctx context.Context) ([]models.Catego
 	for i, category := range categories {
 		response[i] = models.CategoryResponse{
 			ID:          category.ID,
+			URLNAME:     category.URLNAME,
 			Name:        category.Name,
 			Description: category.Description,
 			CreatedAt:   category.CreatedAt,
@@ -78,6 +79,7 @@ func (s *categoryService) GetCategoryByID(ctx context.Context, id string) (*mode
 	return &models.CategoryResponse{
 		ID:          category.ID,
 		Name:        category.Name,
+		URLNAME:     category.URLNAME,
 		Description: category.Description,
 		CreatedAt:   category.CreatedAt,
 		UpdatedAt:   category.UpdatedAt,

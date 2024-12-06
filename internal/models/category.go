@@ -8,6 +8,7 @@ import (
 
 type Category struct {
 	ID          primitive.ObjectID `bson:"_id,omitempty" json:"id"`
+	URLNAME     string             `json:"urlname" binding:"required"`
 	Name        string             `json:"name"        binding:"required"`
 	Description string             `json:"description" binding:"required"`
 	CreatedAt   time.Time          `json:"created_at" bson:"created_at"`
@@ -16,6 +17,7 @@ type Category struct {
 
 type CategoryResponse struct {
 	ID          primitive.ObjectID `json:"id"`
+	URLNAME     string             `json:"urlname"`
 	Name        string             `json:"name"`
 	Description string             `json:"description"`
 	CreatedAt   time.Time          `json:"created_at"`
