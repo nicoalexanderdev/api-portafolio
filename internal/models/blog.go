@@ -10,6 +10,7 @@ import (
 type Blog struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	Title        string             `json:"title" binding:"required"`
+	UrlName      string             `json:"urlname"`
 	Subtitle     string             `json:"subtitle" binding:"required"`
 	Duration     int                `json:"duration" binding:"required"`
 	Content      json.RawMessage    `json:"content" binding:"required"`
@@ -23,6 +24,7 @@ type Blog struct {
 type BlogResponse struct {
 	ID           primitive.ObjectID `json:"id"`
 	Title        string             `json:"title"`
+	UrlName      string             `json:"urlname"`
 	Subtitle     string             `json:"subtitle"`
 	Duration     int                `json:"duration"`
 	Content      json.RawMessage    `json:"content"`

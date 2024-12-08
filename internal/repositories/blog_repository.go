@@ -109,6 +109,7 @@ func (r *blogRepository) Update(ctx context.Context, id primitive.ObjectID, blog
 	update := bson.M{
 		"$set": bson.M{
 			"title":         blog.Title,
+			"urlname":       blog.UrlName,
 			"subtitle":      blog.Subtitle,
 			"duration":      blog.Duration,
 			"content":       blog.Content,
