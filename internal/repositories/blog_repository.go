@@ -113,6 +113,8 @@ func (r *blogRepository) Update(ctx context.Context, id primitive.ObjectID, blog
 			"duration":      blog.Duration,
 			"content":       blog.Content,
 			"example_paths": blog.ExamplePaths,
+			"images":        blog.Images,
+			"categoryId":    blog.CategoryId,
 			"updated_at":    blog.UpdatedAt,
 		},
 	}

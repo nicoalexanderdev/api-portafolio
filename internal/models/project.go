@@ -9,6 +9,7 @@ import (
 type Project struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	Title        string             `json:"title"        binding:"required"`
+	UrlName      string             `json:"urlname" `
 	Subtitle     string             `json:"subtitle"     binding:"required"`
 	Description  string             `json:"description"  binding:"required"`
 	Technologies []string           `json:"technologies" binding:"required"`
@@ -21,6 +22,7 @@ type Project struct {
 type ProjectResponse struct {
 	ID           primitive.ObjectID `json:"id"`
 	Title        string             `json:"title"`
+	UrlName      string             `json:"urlname" `
 	Subtitle     string             `json:"subtitle"`
 	Description  string             `json:"description"`
 	Technologies []string           `json:"technologies"`

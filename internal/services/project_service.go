@@ -47,6 +47,7 @@ func (s *projectService) GetAllProjects(ctx context.Context) ([]models.ProjectRe
 		response[i] = models.ProjectResponse{
 			ID:           project.ID,
 			Title:        project.Title,
+			UrlName:      project.UrlName,
 			Subtitle:     project.Subtitle,
 			Description:  project.Description,
 			Technologies: project.Technologies,
@@ -77,6 +78,7 @@ func (s *projectService) GetProjectByID(ctx context.Context, id string) (*models
 	return &models.ProjectResponse{
 		ID:           project.ID,
 		Title:        project.Title,
+		UrlName:      project.UrlName,
 		Subtitle:     project.Subtitle,
 		Description:  project.Description,
 		Technologies: project.Technologies,

@@ -79,6 +79,7 @@ func (r *projectRepository) Update(ctx context.Context, id primitive.ObjectID, p
 	update := bson.M{
 		"$set": bson.M{
 			"title":        project.Title,
+			"urlname":      project.UrlName,
 			"subtitle":     project.Subtitle,
 			"description":  project.Description,
 			"technologies": project.Technologies,
