@@ -46,17 +46,16 @@ func (s *blogService) GetAllBlogs(ctx context.Context) ([]models.BlogResponse, e
 	response := make([]models.BlogResponse, len(blogs))
 	for i, blog := range blogs {
 		response[i] = models.BlogResponse{
-			ID:           blog.ID,
-			Title:        blog.Title,
-			UrlName:      blog.UrlName,
-			Subtitle:     blog.Subtitle,
-			Duration:     blog.Duration,
-			Content:      blog.Content,
-			ExamplePaths: blog.ExamplePaths,
-			Images:       blog.Images,
-			CategoryId:   blog.CategoryId,
-			CreatedAt:    blog.CreatedAt,
-			UpdatedAt:    blog.UpdatedAt,
+			ID:         blog.ID,
+			Title:      blog.Title,
+			UrlName:    blog.UrlName,
+			Subtitle:   blog.Subtitle,
+			Duration:   blog.Duration,
+			Content:    blog.Content,
+			Images:     blog.Images,
+			CategoryId: blog.CategoryId,
+			CreatedAt:  blog.CreatedAt,
+			UpdatedAt:  blog.UpdatedAt,
 		}
 	}
 
@@ -79,17 +78,16 @@ func (s *blogService) GetBlogByID(ctx context.Context, id string) (*models.BlogR
 	}
 
 	return &models.BlogResponse{
-		ID:           blog.ID,
-		Title:        blog.Title,
-		UrlName:      blog.UrlName,
-		Subtitle:     blog.Subtitle,
-		Duration:     blog.Duration,
-		Content:      blog.Content,
-		ExamplePaths: blog.ExamplePaths,
-		Images:       blog.Images,
-		CategoryId:   blog.CategoryId,
-		CreatedAt:    blog.CreatedAt,
-		UpdatedAt:    blog.UpdatedAt,
+		ID:         blog.ID,
+		Title:      blog.Title,
+		UrlName:    blog.UrlName,
+		Subtitle:   blog.Subtitle,
+		Duration:   blog.Duration,
+		Content:    blog.Content,
+		Images:     blog.Images,
+		CategoryId: blog.CategoryId,
+		CreatedAt:  blog.CreatedAt,
+		UpdatedAt:  blog.UpdatedAt,
 	}, nil
 }
 
@@ -115,17 +113,16 @@ func (s *blogService) GetBlogsByCategory(ctx context.Context, categoryId string)
 	response := make([]models.BlogResponse, len(blogs))
 	for i, blog := range blogs {
 		response[i] = models.BlogResponse{
-			ID:           blog.ID,
-			Title:        blog.Title,
-			UrlName:      blog.UrlName,
-			Subtitle:     blog.Subtitle,
-			Duration:     blog.Duration,
-			Content:      blog.Content,
-			ExamplePaths: blog.ExamplePaths,
-			Images:       blog.Images,
-			CategoryId:   blog.CategoryId,
-			CreatedAt:    blog.CreatedAt,
-			UpdatedAt:    blog.UpdatedAt,
+			ID:         blog.ID,
+			Title:      blog.Title,
+			UrlName:    blog.UrlName,
+			Subtitle:   blog.Subtitle,
+			Duration:   blog.Duration,
+			Content:    blog.Content,
+			Images:     blog.Images,
+			CategoryId: blog.CategoryId,
+			CreatedAt:  blog.CreatedAt,
+			UpdatedAt:  blog.UpdatedAt,
 		}
 	}
 

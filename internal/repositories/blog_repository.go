@@ -47,7 +47,7 @@ func (r *blogRepository) Create(ctx context.Context, blog *models.Blog) error {
 	return nil
 }
 
-// fianall
+// findall
 func (r *blogRepository) FindAll(ctx context.Context) ([]models.Blog, error) {
 	opts := options.Find().SetSort(bson.D{{Key: "created_at", Value: -1}})
 
@@ -108,15 +108,14 @@ func (r *blogRepository) Update(ctx context.Context, id primitive.ObjectID, blog
 
 	update := bson.M{
 		"$set": bson.M{
-			"title":         blog.Title,
-			"urlname":       blog.UrlName,
-			"subtitle":      blog.Subtitle,
-			"duration":      blog.Duration,
-			"content":       blog.Content,
-			"example_paths": blog.ExamplePaths,
-			"images":        blog.Images,
-			"categoryId":    blog.CategoryId,
-			"updated_at":    blog.UpdatedAt,
+			"title":      blog.Title,
+			"urlname":    blog.UrlName,
+			"subtitle":   blog.Subtitle,
+			"duration":   blog.Duration,
+			"content":    blog.Content,
+			"images":     blog.Images,
+			"categoryId": blog.CategoryId,
+			"updated_at": blog.UpdatedAt,
 		},
 	}
 
